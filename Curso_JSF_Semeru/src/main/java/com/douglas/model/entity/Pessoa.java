@@ -11,11 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.br.CPF;
 
 /**
@@ -61,8 +63,13 @@ public class Pessoa implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataDeCadastro;
     
+    //
+    @ManyToOne(optional = false)
+    @ForeignKey(name = "pessoa_sexo")
+    private Pessoa pessoa;
+    
+    
     //Constructor
-
     public Pessoa() {
     }
     
