@@ -29,7 +29,7 @@ public class Sexo implements Serializable {
     @Column(name = "id_sexo", nullable = false)//Masculino 
     private Integer id;
 
-    @Column(name = "descicao",length = 9, unique = true, nullable = false)    
+    @Column(name = "descicao_sexo",length = 9, unique = true, nullable = false)    
     private String descricao;
     
     //Um sexo para muitas pessoas

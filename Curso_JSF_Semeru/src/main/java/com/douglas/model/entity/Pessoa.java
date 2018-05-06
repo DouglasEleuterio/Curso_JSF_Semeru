@@ -8,10 +8,13 @@ import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -63,10 +66,18 @@ public class Pessoa implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataDeCadastro;
     
-    //
+    @OneToOne(mappedBy = "pessoa",fetch = FetchType.LAZY)
+    //Mesmo do relacionamento setado na classe endereço, no relacionamento com a classe pessoa.
+    @ForeignKey(name = "endereco_pessoa")
+    private Endereco endereco;
+    
+    
+    //Se for o Lado many, necessario informar o Join Column
     @ManyToOne(optional = false)
-    @ForeignKey(name = "pessoa_sexo")
-    private Pessoa pessoa;
+    @ForeignKey(name = "pessoa_sexo")                   
+                                 //Qual coluna da Tabela sexo fara o relacionamento ? coluna id_sexo;   
+    @JoinColumn(name = "id_sexo",referencedColumnName = "id_sexo")
+    private Sexo sexo;
     
     
     //Constructor
@@ -74,6 +85,14 @@ public class Pessoa implements Serializable {
     }
     
     //Getters and Seters
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
     
     public Integer getId() {
         return id;
@@ -131,8 +150,15 @@ public class Pessoa implements Serializable {
         this.dataDeCadastro = dataDeCadastro;
     }
 
-    
-    @Override
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+   @Override
     public int hashCode() {
         int hash = 7;
         hash = 97 * hash + Objects.hashCode(this.id);
@@ -155,5 +181,10 @@ public class Pessoa implements Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa\n" + "id = " + id + "\nnome = " + nome + "\ntelefone = " + telefone + "\nemail = " + email + "\ncpf = " + cpf + "\ndataNascimento = " + dataNascimento + "\ndataDeCadastro = " + dataDeCadastro + "\nendereco = " + endereco + "\nsexo = " + sexo ;
     }
 }

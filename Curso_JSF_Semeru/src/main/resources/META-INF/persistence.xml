@@ -3,6 +3,7 @@
   <persistence-unit name="Curso_JSF_Semeru" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>com.douglas.model.entity.Sexo</class>
+    <class>com.douglas.model.entity.Cidade</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/modelojsfcompletodb"/>
