@@ -1,0 +1,5 @@
+Repositorio que armazena as DAOs.
+
+Data Access Objeto são os acessos ao banco de dados.
+A classe é responsavel por efetuar transaçãos com o banco de dados e retornar os
+valores para quem o chama.

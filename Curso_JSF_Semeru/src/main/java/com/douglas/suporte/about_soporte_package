@@ -1,0 +1,5 @@
+Repositorio que armazena os BackBeans.
+
+BackBeans sao beans que apenas dão suporte a página, diferente dos ManagedBeans 
+que tratam regras de negocio.
+O BackBean apenas retorna valores para a página.
